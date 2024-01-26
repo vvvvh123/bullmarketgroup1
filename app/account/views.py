@@ -8,6 +8,7 @@ from payment.models import ShippingAddress
 from payment.models import Order, OrderItem
 
 from store.models import Product
+from store.forms import ProductForm
 
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
@@ -29,9 +30,6 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
 from .models import UserProfile
-
-
-
 
 
 def register(request):
@@ -251,9 +249,10 @@ def track_listings(request):
 
     try:
 
-        listings = Product.objects.filter(seller=request.user.email)
+        listings = Product.objects.filter(seller=request.user.username)
         context = {'listings':listings}
 
+        print(listings)
 
         return render(request, 'account/track-listings.html', context=context)
 
@@ -271,8 +270,18 @@ def delete_listing(request, listing_id):
     return render(request, 'delete_listing_confirm.html', {'listing': listing})
 
 
+@login_required
+def edit_listing(request, listing_id):
+    product = get_object_or_404(Product, id=listing_id, seller=request.user.username)
+    if request.method == 'POST':
+        form = ProductForm(request.POST, request.FILES, instance=product)
+        if form.is_valid():
+            form.save()
+            return redirect('account:track-listings')
+    else:
+        form = ProductForm(instance=product)
 
-
+    return render(request, 'store/edit-product.html', {'form': form})
 
 
 
