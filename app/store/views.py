@@ -20,7 +20,14 @@ def store(request):
 
     return render(request, 'store/store.html', context)
 
+def report(request): 
+    all_products = Product.objects.filter(quantity__gt=0)
 
+    products = {'my_products':all_products}
+
+    category = get_object_or_404(Category, slug=category_slug)
+
+    return render(request, 'store/product-report.html', {'category':category, 'products':products})
 
 def categories(request):
 
