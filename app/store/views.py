@@ -84,6 +84,3 @@ def upload_product(request):
     return render(request, 'store/upload_product.html', {'form': form})
 
 
-
-
-

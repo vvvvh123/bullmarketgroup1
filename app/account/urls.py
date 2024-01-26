@@ -2,7 +2,6 @@ from django.urls import path
 
 from . import views
 
-
 from django.contrib.auth import views as auth_views
 
 
@@ -81,6 +80,8 @@ urlpatterns = [
 
 
     path('delete_listing/<int:listing_id>/', views.delete_listing, name='delete_listing'),
+
+    path('edit_listing/<int:listing_id>/', views.edit_listing, name='edit_listing'),
 
 ]
 

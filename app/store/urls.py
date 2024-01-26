@@ -17,5 +17,6 @@ urlpatterns = [
 
     path('store/upload_product' ,views.upload_product, name='upload-product'),
 
-    path('store/product-report',views.report, name='product-report')
+    path('store/product-report',views.report, name='product-report'),
+    
 ]
