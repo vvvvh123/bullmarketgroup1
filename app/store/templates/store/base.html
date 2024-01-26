@@ -38,7 +38,19 @@
 
 	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
-
+      <script>
+        function checkFileExtension() {
+            var fileInput = document.getElementById('id_image');
+            var filePath = fileInput.value;
+            var allowedExtensions = /(\.jpg|\.png)$/i;
+        
+            if (!allowedExtensions.exec(filePath)) {
+                alert('Invalid file type. Please upload only JPG or PNG images.');
+                fileInput.value = ''; // Clear the file input
+                return false;
+            }
+        }
+    </script>
 
     </head>
 
