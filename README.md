@@ -1,4 +1,4 @@
-# Sample Application for System Setup Verification
+# System Setup Requirement
 
 Instruction:
 1. Clone/Download Sample Application code base to your local directory
